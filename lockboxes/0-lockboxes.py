@@ -21,7 +21,7 @@ def canUnlockAll(boxes):
 
         if key < len(boxes) and key not in open_boxes:
             open_boxes.add(key)
-            
+  
             unused_keys.extend(boxes[key])
 
     # If we've opened all the boxes, return True, else return False

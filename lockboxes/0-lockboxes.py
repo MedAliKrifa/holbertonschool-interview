@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+    Box opener method.
+"""
 def canUnlockAll(boxes):
     # Initialize a set to keep track of the boxes we have access to
     # We start with the first box (index 0) already open

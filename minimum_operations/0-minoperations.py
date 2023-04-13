@@ -15,5 +15,7 @@ def minOperations(n):
         for j in range(1, i):
             if i % j == 0:
                 dp[i] = min(dp[i], dp[j] + (i // j))
+        print("Completed dp[{}]: {}".format(i, dp[i]))
     
     return dp[n] if dp[n] != float('inf') else 0
+

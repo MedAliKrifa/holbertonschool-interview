@@ -1,10 +1,8 @@
 #ifndef LISTS_H
 #define LISTS_H
+
 #include <stdio.h>
 #include <stdlib.h>
-
-/*Stack*/
-#define MAX 50
 
 /**
  * struct listint_s - singly linked list

@@ -7,22 +7,22 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-    listint_t *start = head, *coyote = head;
+listint_t *start = head, *coyote = head;
 
-    while (coyote && coyote->next)
-    {
-        coyote = coyote->next->next;
-        start = start->next;
-        if (coyote == start)
-        {
-            start = head;
-            while (start != coyote)
-            {
-                start = start->next;
-                coyote = coyote->next;
-            }
-            return (coyote);
-        }
-    }
-    return (NULL);
+while (coyote && coyote->next)
+{
+coyote = coyote->next->next;
+start = start->next;
+if (coyote == start)
+{
+start = head;
+while (start != coyote)
+{
+start = start->next;
+coyote = coyote->next;
+}
+return (coyote);
+}
+}
+return (NULL);
 }

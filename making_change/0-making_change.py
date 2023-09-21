@@ -1,5 +1,12 @@
 #!/usr/bin/python3
+"""
+make change: bottom up method
+"""
+
 def makeChange(coins, total):
+    """
+    make change: bottom up method
+    """
     if total < 0:
         return 0  # If total is negative, return 0 as specified
 

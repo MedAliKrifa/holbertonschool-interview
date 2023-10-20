@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def island_perimeter(grid):
     if not grid:
         return 0

@@ -6,10 +6,9 @@ calculate the land Perimeter
 
 def island_perimeter(grid):
     """
-    Calculate the perimeter of the island described in the grid.
+    :type grid: List[List[int]]
+    :rtype: int
     """
-
-
     if not grid:
         return 0
 

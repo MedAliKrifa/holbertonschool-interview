@@ -1,38 +1,25 @@
-#include "palindrome.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include "palindrome.h"
 
 /**
- * reverse - Reverses a number a leaves the reverse value in an int pointer
- *
- * @n: Value to reverse
- * @rev: Pointer to number where reverse value will be stored
- *
- * Return: No Return
+ * is_palindrome - checks if a number is a palindrome
+ * @n: pointer
+ * Return: 1 if palindrome 0 if not
  */
-void reverse(unsigned long n, unsigned long *rev)
-{
-if (n > 0)
-{
-*rev = *rev * 10 + (n % 10);
-n /= 10;
-reverse(n, rev);
-}
-}
 
-/**
- * is_palindrome - Entry point
- *
- * @n: Number to Evaluate
- *
- * Return: 1 if n is a palindrome, and 0 otherwise
- */
 int is_palindrome(unsigned long n)
 {
-unsigned long rev = 0;
+unsigned long reverse = 0, reminder, temp;
 
-reverse(n, &rev);
-
-if (rev == n)
+temp = n;
+while (temp != 0)
+{
+reminder = temp % 10;
+reverse = reverse * 10 + reminder;
+temp /= 10;
+}
+if (n == reverse)
 return (1);
 
 return (0);

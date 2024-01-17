@@ -1,7 +1,6 @@
-#ifndef substring_H
-#define substring_H
+#ifndef SUBSTRING_H
+#define SUBSTRING_H
 
-int allWordsCovered(int *wordCount, int nb_words);
 int *find_substring(char const *s, char const **words, int nb_words, int *n);
 
 #endif

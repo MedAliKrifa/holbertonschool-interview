@@ -1,20 +1,29 @@
 #!/usr/bin/python3
 """
-make change: bottom up method
+makeChange
 """
 
 
 def makeChange(coins, total):
     """
-    make change: bottom up method
+    fewest number of coins needed to meet totat
+    If total is 0 or less, return 0
+    If total cannot be met by any number of coins you have, return -1
     """
-    if total < 0:
+
+    if total <= 0:
         return 0
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
-    for coin in coins:
-        for sub_total in range(coin, total + 1):
-            dp[sub_total] = min(dp[sub_total], dp[sub_total - coin] + 1)
-    if dp[total] == float('inf'):
+    if total in coins:
+        return 1
+    if len(coins) <= 0:
         return -1
-    return dp[total]
+    M = [0]*(total + 1)
+
+    for j in range(1, total + 1):
+        M[j] = total + 1
+
+    for i in range(1, total+1):
+        for coin in coins:
+            if i - coin >= 0:
+                M[i] = min(M[i], 1 + M[i - coin])
+    return M[total] if M[total] != total + 1 else -1

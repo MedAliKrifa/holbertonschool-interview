@@ -1,1 +1,1 @@
-pascal_triangle
+# Pascal's Triangle

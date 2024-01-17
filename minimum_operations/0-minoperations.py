@@ -4,13 +4,31 @@ Minimum Operations
 """
 
 
+def isPremium(n):
+    """
+    Checks if a number is premium
+    """
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+
 def minOperations(n):
-    if n == 1:
+    """
+    defines minimum operations
+    """
+    if n < 2:
         return 0
-    dp = [float('inf')] * (n+1)
-    dp[1] = 0
-    for i in range(2, n+1):
-        for j in range(1, i):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j] + (i // j))
-    return dp[n] if dp[n] != float('inf') else 0
+    op_calc = 2
+    opp = 0
+    while(n != 1):
+        if (isPremium(op_calc)):
+            if (n % op_calc == 0):
+                n = n / op_calc
+                opp = opp + op_calc
+            else:
+                op_calc += 1
+        else:
+            op_calc += 1
+    return opp

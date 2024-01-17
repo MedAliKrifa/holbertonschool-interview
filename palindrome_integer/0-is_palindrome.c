@@ -10,17 +10,17 @@
 
 int is_palindrome(unsigned long n)
 {
-unsigned long reverse = 0, reminder, temp;
+	unsigned long reverse = 0, reminder, temp;
 
-temp = n;
-while (temp != 0)
-{
-reminder = temp % 10;
-reverse = reverse * 10 + reminder;
-temp /= 10;
-}
-if (n == reverse)
-return (1);
+	temp = n;
+	while (temp != 0)
+	{
+		reminder = temp % 10;
+		reverse = reverse * 10 + reminder;
+		temp /= 10;
+	}
+	if (n == reverse)
+		return (1);
 
-return (0);
+	return (0);
 }

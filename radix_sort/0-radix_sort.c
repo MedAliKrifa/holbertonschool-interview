@@ -1,76 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "sort.h"
+
 /**
- * getMax - function to get maximum value in arr
- * @array: arry to be sorted.
- * @n: size of array
- * Return: max
+ * getMax - get max in array
+ * @array: The array to be printed
+ * @size: size of the array
+ * Return: the max number in the array
  */
-int getMax(int *array, int n)
-{
-int mx = array[0];
-int i;
 
-for (i = 1; i < n; i++)
-if (array[i] > mx)
-mx = array[i];
-return (mx);
+int getMax(int *array, int size)
+{
+    int max = array[0];
+    int i;
+
+    for (i = 1; i < size; i++)
+    {
+        if (array[i] > max)
+            max = array[i];
+    }
+    return max;
 }
 /**
- * countSort - to do counting sort of arr
- * @array: arry to be sorted.
- * @n: size of array
- * @div: expectued number
+ * countSort - counting sort
+ * @array: The array to be printed
+ * @size: size of the array
+ * @exp: the  digit's place value
  */
-void countSort(int *array, int n, int div)
-{
 
-int *freq;
-int *temp;
-int init, count, u, t, f;
+void countSort(int *array, int size, int exp)
+{
+    int *output = malloc(size * sizeof(int));
+    int count[10] = {0};
+    int i;
 
-freq = malloc(sizeof(int) * (10));
-if (!freq)
-return;
-for (init = 0; init < 10; init++)
-freq[init] = 0;
-for (count = 0; count < n; count++)
-freq[(array[count] / div) % 10]++;
-for (u = 1; u < 10; u++)
-freq[u] += freq[u - 1];
-temp = malloc(sizeof(int) * (n));
-if (!temp)
-{
-free(freq);
-return;
+    for (i = 0; i < size; i++)
+    {
+        count[(array[i] / exp) % 10]++;
+    }
+
+    for (i = 1; i < 10; i++)
+    {
+        count[i] += count[i - 1];
+    }
+
+    for (i = size - 1; i >= 0; i--)
+    {
+        output[count[(array[i] / exp) % 10] - 1] = array[i];
+        count[(array[i] / exp) % 10]--;
+    }
+
+    for (i = 0; i < size; i++)
+    {
+        array[i] = output[i];
+    }
+
+    free(output);
+    print_array(array, size);
 }
-/* Building the temporary array. */
-for (t = n - 1; t > -1; t--)
-{
-temp[freq[(array[t] / div) % 10] - 1] = array[t];
-freq[(array[t] / div) % 10]--;
-}
-/* Updating the elements in array. */
-for (f = 0; f < n; f++)
-array[f] = temp[f];
-free(temp);
-free(freq);
-}
+
 /**
- * radix_sort - function that sorts an array of integers in ascending order
- * @array: arry to be sorted.
- * @size: size of array
+ * radix_sort - radix sort
+ * @array: The array to be printed
+ * @size: size of the array
  */
 void radix_sort(int *array, size_t size)
 {
-int exp;
-int m = getMax(array, size);
+    int max, exp;
 
-if (!array || size < 2)
-return;
+    max = getMax(array, size);
 
-for (exp = 1; m / exp > 0; exp *= 10)
-{
-countSort(array, size, exp);
-print_array(array, size);
-}
+    for (exp = 1; max / exp > 0; exp *= 10)
+    {
+        countSort(array, size, exp);
+    }
 }

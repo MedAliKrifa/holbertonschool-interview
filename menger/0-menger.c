@@ -13,26 +13,27 @@
 
 void drawMenger(int level, int size, int row, int col)
 {
-    int newSize, isCenterEmpty;
+int newSize, isCenterEmpty;
 
-    if (level == 0)
-    {
-        printf("#");
-    }
-    else
-    {
-        newSize = size / 3;
-        isCenterEmpty = (row >= newSize && row < 2 * newSize) && (col >= newSize && col < 2 * newSize);
+if (level == 0)
+{
+printf("#");
+}
+else
+{
+newSize = size / 3;
+isCenterEmpty = (row >= newSize && row < 2 * newSize) &&
+(col >= newSize && col < 2 * newSize);
 
-        if (isCenterEmpty)
-        {
-            printf(" ");
-        }
-        else
-        {
-            drawMenger(level - 1, newSize, row % newSize, col % newSize);
-        }
-    }
+if (isCenterEmpty)
+{
+printf(" ");
+}
+else
+{
+drawMenger(level - 1, newSize, row % newSize, col % newSize);
+}
+}
 }
 /**
  * menger - Menger Sponge
@@ -41,21 +42,22 @@ void drawMenger(int level, int size, int row, int col)
  */
 void menger(int level)
 {
-    int size, i, j;
+int size, i, j;
 
-    if (level < 0)
-    {
-        return;
-    }
+if (level < 0)
+{
+return;
+}
 
-    size = (int)pow(3, level);
+size = (int)pow(3, level);
 
-    for (i = 0; i < size; i++)
-    {
-        for (j = 0; j < size; j++)
-        {
-            drawMenger(level, size, i, j);
-        }
-        printf("\n");
-    }
+for (i = 0; i < size; i++)
+{
+
+for (j = 0; j < size; j++)
+{
+drawMenger(level, size, i, j);
+}
+printf("\n");
+}
 }

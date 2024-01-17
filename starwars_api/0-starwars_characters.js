@@ -1,31 +1,19 @@
 #!/usr/bin/node
 const request = require('request');
+const Id = process.argv[2];
+const url = 'https://swapi-api.hbtn.io/api/films/' + Id;
 
-const Args = process.argv.slice(2);
-const MovieID = Args[0];
-
-const options = {
-  url: `https://swapi-api.hbtn.io/api/films/${MovieID}/`,
-  json: true,
-  transform (body, response) {
-    if (response.headers['content-type'] === 'application/json') {
-      response.body = JSON.parse(body);
-    }
-    return response;
+request(url, async (err, response, body) => {
+  if (err) {
+    console.log(err);
   }
-};
-
-request(options, async (error, response, body) => {
-  if (error) {
-    throw new Error(`HTTP error: ${response.status}`);
-  }
-  for (const characterURL of response.body.characters) {
+  for (const charId of JSON.parse(body).characters) {
     await new Promise((resolve, reject) => {
-      request(characterURL, (err, res, body1) => {
+      request(charId, (err, response, body) => {
         if (err) {
-          reject(new Error(`HTTP error: ${res.status}`));
+          reject(err);
         }
-        console.log(JSON.parse(body1).name);
+        console.log(JSON.parse(body).name);
         resolve();
       });
     });
